@@ -8,7 +8,7 @@ from gtts import gTTS
 from dotenv import load_dotenv
 from pypdf import PdfReader
 from pdf2image import convert_from_bytes
-import easyocr
+
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_google_genai import (
@@ -201,6 +201,7 @@ if new_files:
 
             if not file_page_texts:
                 status.write(f"Scanned PDF detected in {uploaded_file.name}. Running OCR...")
+                import easyocr
                 reader_ocr = easyocr.Reader(['en'])
                 images = convert_from_bytes(uploaded_file.getvalue())
                 for i, image in enumerate(images):
